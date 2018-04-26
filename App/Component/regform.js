@@ -26,7 +26,6 @@ export default class RegForm extends Component {
     super();
     this.state = {
       email: '',
-      pass: '',
     }
   }
   render() {
