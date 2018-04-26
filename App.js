@@ -19,7 +19,7 @@ import RegForm from './App/Component/regform';
 import RChoose from './App/Component/RChoose';
 import SignIn from './App/Component/SignIn';
 import Dashboard from './App/Component/Ddashboard';
-
+import firebase from './firebase';
 // import Home from './App/Component/Home';
 
 const instructions = Platform.select({

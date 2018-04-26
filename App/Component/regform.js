@@ -22,12 +22,23 @@ export default class RegForm extends Component {
   static navigationOptions = {
     title: 'Signup',
   };
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      pass: '',
+    }
+  }
   render() {
+    console.log(this.state.email)
     return <ScrollView contentContainerStyle={style.RegForm}>
       <Text style={style.header}>Registration</Text>
       <TextInput style={style.TextInput} placeholder="Full Name" underlineColorAndroid={'transparent'} />
 
-      <TextInput style={style.TextInput} placeholder="Email" underlineColorAndroid={'transparent'} />
+      <TextInput style={style.TextInput} placeholder="Email" value={this.state.email}
+        onChangeText={(text) => this.setState({
+          email: text
+        })} underlineColorAndroid={'transparent'} />
 
       <TextInput style={style.TextInput} placeholder="Contact no" underlineColorAndroid={'transparent'} />
 
@@ -40,7 +51,9 @@ export default class RegForm extends Component {
 
       <TextInput style={style.TextInput} placeholder="Contact no" underlineColorAndroid={'transparent'} />
 
-      <TextInput style={style.TextInput} placeholder="Password" secureTextEntry={true}
+      <TextInput style={style.TextInput} placeholder="Password"
+
+        secureTextEntry={true}
         underlineColorAndroid={'transparent'} />
 
       <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={style.button}>
