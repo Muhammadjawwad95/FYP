@@ -12,7 +12,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Image
 } from 'react-native';
 
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
@@ -31,21 +32,35 @@ export default class RChoose extends Component {
 
 
   render() {
-    const radio_props = [
-      { label: 'param1', value: 0 },
-      { label: 'param2', value: 1 }
+    const radio_props = [ 
+      { label: 'Car', value: 0  },
+      { label: 'Bike', value: 1 }
     ];
     return <ScrollView contentContainerStyle={style.RChoose}>
-      <Text style={style.header}>Registration</Text>
+
+<View>
+
+<Image source={require('./sl.png')} style={style.logo} />
+
+      </View>
+
+      <Text style={style.txt}>Choose Your Vehicle</Text>
 
       <View>
-        <RadioForm
+        <RadioForm style={style.radiobtn}
           radio_props={radio_props}
           initial={0}
-          formHorizontal={true}
+         // formHorizontal={true}
           onPress={(value) => { this.setState({ value: value }) }}
         />
       </View>
+
+      <View>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('RPerInfo')} style={style.dp}>
+      <Image source={require('./arr.png')} style={style.arrow} />
+      </TouchableOpacity>
+      </View>
+
 
     </ScrollView>
   }
@@ -56,10 +71,33 @@ export default class RChoose extends Component {
 const style = StyleSheet.create({
   RChoose: {
     flex: 1,
-    backgroundColor: '#6C5B7B',
+    backgroundColor: '#fffb00',
   },
+ radiobtn:{
+  marginTop: 60,
+  justifyContent: 'center',
+ },
 
+ logo: {
+  height:270,
+  width:270,
+justifyContent: 'center',
+  marginTop:60,
+  alignItems: 'center',
+  marginLeft: 60
+},
 
+txt:{
+  justifyContent: 'center',
+  marginLeft:120,
+  marginTop:-20
+  
+},
+
+arrow:{
+  marginTop: 60,
+  marginLeft:310,
+},
 
 
 });

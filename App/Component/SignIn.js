@@ -17,15 +17,51 @@ import {
   ScrollView,
 
 } from 'react-native';
+import * as firebase from 'firebase';
 
 
 
 
 
 export default class SignIn extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      // fullName: '',
+      password: '',
+      signinError: null,
+      // ContactNo: '',
+      // studentId: '',
+      // Designation: '',
+      // Organization: '',
+      // Address: '',
+
+    }
+    this.signinHandler = this.signinHandler.bind(this);
+  }
   static navigationOptions = {
-    title: 'Signup',
+    title: 'Signin',
   };
+  signinHandler() {
+    const email = this.state.email;
+    const password = this.state.password;
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((user) => {
+      console.log("user from signin", user)
+      this.setState({
+        signinError: null,
+      })
+    }).catch((err) => {
+      console.log("err from signin", err)
+      this.setState({
+        signinError: err.message,
+      })
+      this.props.navigation.navigate('Drawer');
+    })
+    console.log("siginhandler", this.state  )
+
+  }
   render() {
     return (
       <ScrollView>
@@ -34,22 +70,35 @@ export default class SignIn extends Component {
 
           <View style={style.logoContainer}>
 
-            <Image source={require('./cl.png')} style={style.logo} />
+            <Image source={require('./sl.png')} style={style.logo} />
 
           </View>
 
           <View style={style.formcontainer}>
+       {this.state.signinError ?  <Text style={{color: 'red'}}>{this.state.signinError}</Text> : null}
+            <TextInput
+              placeholder="Email" placeholderTextColor="#696969" style={style.input} value={this.state.email}
+              onChangeText={(input) => {
+                this.setState({
+                  email: input
+                })
+              }} />
 
             <TextInput
-              placeholder="Student Id" placeholderTextColor="#cccccc" style={style.input} />
-            
-            <TextInput
-              placeholder="Password" style={style.input} placeholderTextColor="#cccccc" secureTextEntry={true} />
+              placeholder="Password" style={style.input} placeholderTextColor="#696969" secureTextEntry={true}
+              value={this.state.password}
+              onChangeText={(input) => {
+                this.setState({
+                  password: input
+                })
+              }
+              }
+            />
 
           </View>
 
           <View style={style.sin}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Drawer')} style={style.button}>
+            <TouchableOpacity onPress={this.signinHandler} style={style.button}>
 
               <Text style={style.btntxt}>Sign In</Text>
 
@@ -73,10 +122,10 @@ const style = StyleSheet.create({
 
   container: {
     // flex: 1,
-    backgroundColor: '#6C5B7B',
-    height:620
-    
-    
+    backgroundColor: '#fffb00',
+    height: 620
+
+
   },
 
   header: {
@@ -84,27 +133,18 @@ const style = StyleSheet.create({
     color: '#fff',
     paddingBottom: 10,
     marginBottom: 40,
-    borderBottomColor: '#199187',
+    borderBottomColor: '#696969',
     borderBottomWidth: 1,
 
   },
 
-  //   TextInput: {
-  //     // alignself: 'stretch',
-  //     height: 40,
-  //     marginBottom: 30,
-  //     color: '#fff',
-  //     borderBottomColor: '#f8f8f8',
-  //     borderBottomWidth: 1,
-  //   },
-
   logo: {
-    height: 120,
-    width: 120,
+    height: 250,
+    width: 250,
     justifyContent: 'center',
     marginTop: 60,
     alignItems: 'center',
-    marginLeft: 115,
+    marginLeft: 65,
   },
 
   logoContainer: {
@@ -113,22 +153,24 @@ const style = StyleSheet.create({
 
   input: {
     height: 40,
-    backgroundColor: 'white',
-   // marginBottom: 2,
-    marginTop: 50,
+    backgroundColor: '#FEFAFA',
+    marginTop: 20,
     color: 'black',
     paddingHorizontal: 10
   },
 
   formcontainer: {
     padding: 20,
+    marginTop: -60
+
+
   },
 
   button: {
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#808080',
-    marginTop: 50,
+    backgroundColor: '#0084c9',
+    marginTop: 30,
     width: 200,
 
   },

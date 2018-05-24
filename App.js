@@ -17,9 +17,11 @@ import SplashScreen from 'react-native-splash-screen';
 import Home from './App/Component/Home';
 import RegForm from './App/Component/regform';
 import RChoose from './App/Component/RChoose';
+import RPerInfo from './App/Component/RPerInfo';
 import SignIn from './App/Component/SignIn';
 import Dashboard from './App/Component/Ddashboard';
-import firebase from './firebase';
+
+
 // import Home from './App/Component/Home';
 
 const instructions = Platform.select({
@@ -34,6 +36,7 @@ console.disableYellowBox = true;
 const DrawerStack = DrawerNavigator({
   Dashboard: { screen: Dashboard },
   Home:{screen:Home}
+  
 })
 
 const DrawerNavigation = StackNavigator({
@@ -44,19 +47,18 @@ const DrawerNavigation = StackNavigator({
       headerStyle: { backgroundColor: '#fff' },
        title: 'Dashboard',
       headerTintColor: 'white',
-
     })
   })
 
 const PrimaryNav = StackNavigator({
   Home:{screen:Home},
-  // RegForm:{screen:RegForm},
-  RChoose:{screen:RegForm},
+  RChoose:{screen:RChoose},
+  RegForm:{screen:RegForm},
   Drawer: { screen: DrawerNavigation },
   SignIn: { screen: SignIn },
-  
-  
-  //sg: {screen:RegForm},
+  RPerInfo:{screen:RPerInfo},
+  //RVechInfo:{screen:RVechInfo},
+   //sg: {screen:RegForm},
   // About: {screen: }
 },
   {

@@ -33,14 +33,14 @@ export default class Home extends Component {
 
 <View style={style.msg}>
 <TouchableOpacity onPress={() => this.props.navigation.navigate('SignIn')} style={style.btnSI}>
-        <Text>SignIn</Text>
+        <Text>Sign In</Text>
       </TouchableOpacity>
    
             </View> 
          
 <View>
 
-<Image source={require('./cl.png')} style={style.logo} />
+<Image source={require('./sl.png')} style={style.logo} />
 
       </View>
 
@@ -87,29 +87,29 @@ const style = StyleSheet.create({
  
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#808080',
-    marginTop: 100,
+    backgroundColor: '#0084c9',
+    marginTop:5,
     marginBottom:10,
-    
-     width:200
+    width:200,
+    color:"#FFFFFF"
     
   },
 
   buttonp: {
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#808080',
-    marginTop:0.2,
-    width:200,
+    backgroundColor: '#0084c9',
+    marginTop:10,
+    width:200, 
   },
 
  logo:{
-  height:160,
-  width:160,
+  height:270,
+  width:270,
 justifyContent: 'center',
-  marginTop:100,
+  marginTop:90,
   alignItems: 'center',
-  marginLeft: 95
+  marginLeft: 60
  },
 
  mHbtn:{
@@ -126,7 +126,7 @@ sg:{
 },
 
 Home:{
-  backgroundColor: '#6C5B7B',
+  backgroundColor: '#fffb00',
   borderBottomWidth: 1,
   marginTop:0,
   height:620
@@ -135,9 +135,10 @@ Home:{
 
 btnSI:{
   marginTop:20,
-  marginLeft:310,
+  marginLeft:300,
   width:null,
-  height:null
+  height:null,
+  fontSize:20
 }
 
 
